@@ -22,16 +22,10 @@ CoffeeEmberGenerator.prototype.askFor = function askFor() {
   // have Yeoman greet the user.
   console.log(this.yeoman);
 
-  var prompts = [{
-    type: 'confirm',
-    name: 'nameChoice',
-    message: 'Would you like to enable this option?',
-    default: true
-  }];
+  var prompts = [];
 
   this.prompt(prompts, function (props) {
     this.nameChoice = props.nameChoice;
-
     cb();
   }.bind(this));
 };
@@ -48,12 +42,23 @@ CoffeeEmberGenerator.prototype.app = function app() {
   this.mkdir('app/views');
   this.mkdir('app/routes');
   this.mkdir('app/styles');
+  this.mkdir('public');
   this.mkdir('app/templates');
   this.mkdir('app/templates/partials');
   this.mkdir('app/templates/components');
 
+  this.copy('bootloader/initializer.coffee', 'bootloader/initializer.coffee');
+  this.copy('bootloader/app.coffee', 'bootloader/app.coffee');
+  this.copy('bootloader/controllers.coffee', 'bootloader/controllers.coffee');
+  this.copy('bootloader/models.coffee', 'bootloader/controllers.coffee');
+  this.copy('bootloader/views.coffee', 'bootloader/controllers.coffee');
+  this.copy('bootloader/templates.coffee', 'bootloader/controllers.coffee');
+  this.copy('bootloader/components.coffee', 'bootloader/controllers.coffee');
+  this.copy('bootloader/routes.coffee', 'bootloader/controllers.coffee');
+
   this.copy('_package.json', 'package.json');
   this.copy('_bower.json', 'bower.json');
+  this.copy('Gruntfile.coffee', 'Gruntfile.coffee');
 };
 
 CoffeeEmberGenerator.prototype.projectfiles = function projectfiles() {
